@@ -65,11 +65,26 @@ def show_employee():
             print('Masukkan ulang nama karyawan')
             print()
             show_employee()
+    
     print('Apakah anda ingin mengedit data karyawan?')
     print('1. Ya')
     print('2. Tidak')
-    print('1 - 2:', end = ' ')
-    user_input=input()        
+    print('Input (1-2):', end = ' ')
+    user_input=int(input())
+    
+    edit_database = True
+    while edit_database == True:
+        if user_input == 1:
+            pass
+        elif user_input == 2:
+            print('Kembali ke Menu Database')
+            database_menu_display()
+        else:
+            print('Perintah tidak ditemukan!')
+            print('Mohon pilih ulang (1-2):', end = ' ')
+            user_input=int(input())
+
+
 
 employee_database={
     'Viky':{
