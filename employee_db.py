@@ -20,7 +20,7 @@ def main_menu(i:int):
     if i == 1:
         database_menu_display()
     elif i == 2:
-        pass
+        add_employee()
     elif i == 3:
         pass
     elif i == 4:
@@ -120,11 +120,70 @@ def show_employee():
             print()
             database_menu_display()
         else:
+            print()
             print('Perintah tidak ditemukan!')
             print('Mohon pilih ulang (1-2):', end = ' ')
             user_input=int(input())
 
-# def add_employee_data():
+def add_employee():
+
+    print('Masukkan data nama karyawan baru:', end = ' ')
+    new_name_input = (input().lower()).title()
+    print('Masukkan data ID karyawan baru:', end = ' ')
+    new_id_input = (input().lower()).title()
+    print('Masukkan data tempat lahir karyawan baru:', end = ' ')
+    new_birthplace_input = (input().lower()).title()
+    print('Masukkan data tanggal lahir karyawan baru:', end = ' ')
+    new_birthday_input = (input().lower()).title()
+    print('Masukkan data alamat karyawan baru:', end = ' ')
+    new_address_input = (input().lower()).title()
+    print('Masukkan data golongan darah karyawan baru:', end = ' ')
+    new_bloodtype_input = (input().lower()).title()
+    print('Masukkan data agama karyawan baru:', end = ' ')
+    new_religion_input = (input().lower()).title()
+    print('Masukkan data status perkawinan karyawan baru:', end = ' ')
+    new_marriedstatus_input = (input().lower()).title()
+    print()
+
+    print('{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}'.format(new_name_input, 
+                                            new_id_input,
+                                            new_birthplace_input,
+                                            new_birthday_input,
+                                            new_address_input,
+                                            new_bloodtype_input,
+                                            new_religion_input,
+                                            new_marriedstatus_input
+                                            ))
+
+    print()
+    print('Apakah data karyawan yang diinput sudah benar?')
+    print('1. Ya')
+    print('2. Tidak')
+    user_input=int(input(('(1/2): ')))
+
+    input_database = True
+    while input_database == True:
+        if user_input == 1:
+            employee_database.update({new_name_input :{'ID' : new_id_input,
+                                                        'Tempat Lahir' : new_birthplace_input,
+                                                        'Tanggal Lahir' : new_birthday_input,
+                                                        'Alamat' : new_address_input,
+                                                        'Golongan Darah' : new_bloodtype_input,
+                                                        'Agama' : new_religion_input,
+                                                        'Status Perkawinan' : new_marriedstatus_input}
+                                                        })
+            input_database = False
+            print('Data karyawan baru telah diterima')
+            main_menu_display()
+        elif user_input == 2:
+            print()
+            add_employee()
+        else:
+            print()
+            print('Perintah tidak ditemukan!')
+            print('Mohon pilih ulang (1-2):', end = ' ')
+            user_input=int(input())
+            print()
 
 employee_database={
     'Viky':{
