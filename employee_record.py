@@ -69,7 +69,7 @@ def show_employee():
     print('Apakah anda ingin mengedit data karyawan?')
     print('1. Ya')
     print('2. Tidak')
-    print('Input (1-2):', end = ' ')
+    print('Input (1/2):', end = ' ')
     user_input=int(input())
     
     edit_database = True
