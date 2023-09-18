@@ -33,7 +33,8 @@ def show_database():
     for employee_name, employee_data in employee_database.items():
         print('{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}'.format(employee_name, 
                                                employee_data['ID'],
-                                               employee_data['Tempat Lahir'],                                                   employee_data['Tanggal Lahir'],
+                                               employee_data['Tempat Lahir'],
+                                               employee_data['Tanggal Lahir'],
                                                employee_data['Alamat'],
                                                employee_data['Golongan Darah'],
                                                employee_data['Agama'],
@@ -48,23 +49,21 @@ def show_employee():
     name_input = name_input.title()
     print()
 
-    for employee_name, employee_data in employee_database.items():
-        if name_input == employee_name:
-            print('{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}'.format(employee_name,
-                                                        employee_data['ID'],
-                                                        employee_data['Tempat Lahir'],                                                   employee_data['Tanggal Lahir'],
-                                                        employee_data['Alamat'],
-                                                        employee_data['Golongan Darah'],
-                                                        employee_data['Agama'],
-                                                        employee_data['Status Perkawinan']
-                                                        ))
-            print()
-            break
-        else:
-            print('Data karyawan tidak ditemukan!')
-            print('Masukkan ulang nama karyawan')
-            print()
-            show_employee()
+    if name_input in employee_database.keys():
+        print('{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}'.format(name_input,
+                                                      employee_database[name_input]['ID'],
+                                                      employee_database[name_input]['Tempat Lahir'],                                                   
+                                                      employee_database[name_input]['Tanggal Lahir'],
+                                                      employee_database[name_input]['Alamat'],
+                                                      employee_database[name_input]['Golongan Darah'],
+                                                      employee_database[name_input]['Agama'],
+                                                      employee_database[name_input]['Status Perkawinan']
+                                                      ))
+    else:
+        print('Data karyawan tidak ditemukan!')
+        print('Masukkan ulang nama karyawan')
+        print()
+        show_employee()
     
     print('Apakah anda ingin mengedit data karyawan?')
     print('1. Ya')
