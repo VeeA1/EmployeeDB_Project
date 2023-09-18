@@ -10,7 +10,11 @@ def edit_data(keys:str):
     print()
 
     if user_input == 1:
-        pass
+        print('Masukkan data nama karyawan baru:', end = ' ')
+        new_name_input = (input().lower()).title()
+        db_temp = employee_database[keys]
+        del employee_database[keys]
+        employee_database[new_name_input] = db_temp        
     elif user_input == 2:
         print('Masukkan data ID karyawan baru:', end = ' ')
         new_id_input = input()
@@ -40,19 +44,34 @@ def edit_data(keys:str):
         new_marriedstatus_input = (input().lower()).title()
         employee_database[keys]['Status Perkawinan'] = new_marriedstatus_input
     else:
-        pass
+        print()
+        print('Perintah tidak ditemukan!')
+        edit_data(keys)
+    
     print()
 
-    print('{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}'.format(keys,
-                                                  employee_database[keys]['ID'],
-                                                  employee_database[keys]['Tempat Lahir'],                                                   
-                                                  employee_database[keys]['Tanggal Lahir'],
-                                                  employee_database[keys]['Alamat'],
-                                                  employee_database[keys]['Golongan Darah'],
-                                                  employee_database[keys]['Agama'],
-                                                  employee_database[keys]['Status Perkawinan']
-                                                 ))
-    print()
+    if user_input == 1:
+        print('{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}'.format(new_name_input,
+                                                      employee_database[new_name_input]['ID'],
+                                                      employee_database[new_name_input]['Tempat Lahir'],                                                   
+                                                      employee_database[new_name_input]['Tanggal Lahir'],
+                                                      employee_database[new_name_input]['Alamat'],
+                                                      employee_database[new_name_input]['Golongan Darah'],
+                                                      employee_database[new_name_input]['Agama'],
+                                                      employee_database[new_name_input]['Status Perkawinan']
+                                                     ))
+
+    elif user_input > 1 and user_input < 8:
+        print('{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}'.format(keys,
+                                                      employee_database[keys]['ID'],
+                                                      employee_database[keys]['Tempat Lahir'],                                                   
+                                                      employee_database[keys]['Tanggal Lahir'],
+                                                      employee_database[keys]['Alamat'],
+                                                      employee_database[keys]['Golongan Darah'],
+                                                      employee_database[keys]['Agama'],
+                                                      employee_database[keys]['Status Perkawinan']
+                                                     ))
+    # print()
 
     print('Apakah data edit sudah benar?')
     print('1. Ya')
