@@ -17,13 +17,17 @@ def main_menu(i:str):
     Memilih menu yang diinginkan
     '''
     if i == '1':
-        show_database()
+        pass
+        # show_database()
     elif i == '2':
-        show_employee()
+        pass
+        # show_employee()
     elif i == '3':
-        add_employee()
+        pass
+        # add_employee()
     elif i == '4':
-        delete_menu()
+        pass
+        # delete_menu()
     elif i == '5':
         print('Terima kasih telah mengakses database karyawan')
         print('---------------------------------------------  Have a good day  --------------------------------------------------')
