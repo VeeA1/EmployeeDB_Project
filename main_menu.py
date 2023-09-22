@@ -1,39 +1,38 @@
-def main_menu(i:int):
+def main_menu_display():
+    print()
+    print('=========================================  Main Menu Database Karyawan  ==========================================')
+    print()
+    print('1. Tampilkan data seluruh karyawan')
+    print('2. Tampilkan data karyawan')
+    print('3. Tambah Data Karyawan')
+    print('4. Hapus Data Karyawan')
+    print('5. Exit')
+    print()
+    print('Silahkan pilih menu yang ingin di akses(1 - 4):', end=' ')
+    user_input=input()
+    main_menu(user_input)
+
+def main_menu(i:str):
     '''
     Memilih menu yang diinginkan
     '''
-    if i == 1:
-        pass
-    elif i == 2:
-        pass
-    elif i == 3:
-        pass
-    elif i == 4:
-        pass
-    elif i == 5:
-        print('Terima kasih telah mengakses daftar karyawan')
-        print('-----------  Have a good day  --------------')
+    if i == '1':
+        show_database()
+    elif i == '2':
+        show_employee()
+    elif i == '3':
+        add_employee()
+    elif i == '4':
+        delete_menu()
+    elif i == '5':
+        print('Terima kasih telah mengakses database karyawan')
+        print('---------------------------------------------  Have a good day  --------------------------------------------------')
         print()
         quit()
     else:
-        print('Pilihan menu yang dipilih tidak tersedia')
+        print()
+        print('Pilihan menu tidak tersedia!')
         print('Mohon pilih ulang menu yang yang tersedia')
         main_menu_display()
 
-def main_menu_display():
-    print()
-    print('=============  Data Karyawan Divisi Data Science  =============')
-    print()
-    print('1. List Daftar Karyawan')
-    print('2. Menambahkan Data Karyawan')
-    print('3. Mengubah Data Karyawan')
-    print('4. Menghapus Data Karyawan')
-    print('5. Exit')
-    print()
-    print('Silahkan pilih menu yang ingin di akses(1 - 5):', end=' ')
-    user_input=int(input())
-    print()
-    main_menu(user_input)
-
-# main_menu(user_input)
 main_menu_display()
