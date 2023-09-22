@@ -1,71 +1,43 @@
 def main_menu_display():
     print()
-    print('=============  Data Karyawan Divisi Data Science  =============')
-    print()
-    print('1. List Daftar Karyawan')
-    print('2. Menambahkan Data Karyawan Baru')
-    print('3. Mengubah Data Karyawan')
-    print('4. Menghapus Data Karyawan')
-    print('5. Exit')
-    print()
-    print('Silahkan pilih menu yang ingin di akses(1 - 5):', end=' ')
-    user_input=int(input())
-    print()
-    main_menu(user_input)
-
-def main_menu(i:int):
-    '''
-    Memilih menu yang diinginkan
-    '''
-    if i == 1:
-        database_menu_display()
-    elif i == 2:
-        add_employee()
-    elif i == 3:
-        show_employee()
-    elif i == 4:
-        delete_menu()
-    elif i == 5:
-        print('Terima kasih telah mengakses daftar karyawan')
-        print('-----------  Have a good day  --------------')
-        print()
-        quit()
-    else:
-        print('Pilihan menu yang dipilih tidak tersedia')
-        print('Mohon pilih ulang menu yang yang tersedia')
-        main_menu_display()
-
-def database_menu_display():
-    print('=============  Database Karyawan  =============')
+    print('=========================================  Main Menu Database Karyawan  ==========================================')
     print()
     print('1. Tampilkan data seluruh karyawan')
     print('2. Tampilkan data karyawan')
-    print('3. Kembali ke menu utama')
+    print('3. Tambah Data Karyawan')
+    print('4. Hapus Data Karyawan')
+    print('5. Exit')
     print()
-    print('Silahkan pilih menu yang ingin di akses (1-3):', end=' ')
-    user_input = int(input())
-    database_menu(user_input)
+    print('Silahkan pilih menu yang ingin di akses(1 - 4):', end=' ')
+    user_input=input()
+    main_menu(user_input)
 
-def database_menu(i:int):
+def main_menu(i:str):
     '''
     Memilih menu yang diinginkan
     '''
-    if i == 1:
+    if i == '1':
         show_database()
-    elif i == 2:
+    elif i == '2':
         show_employee()
-    elif i == 3:
-        print('Kembali ke Menu Utama')
+    elif i == '3':
+        add_employee()
+    elif i == '4':
+        delete_menu()
+    elif i == '5':
+        print('Terima kasih telah mengakses database karyawan')
+        print('---------------------------------------------  Have a good day  --------------------------------------------------')
         print()
-        main_menu_display()
+        quit()
     else:
         print()
-        print('Pilihan menu tidak tersedia')
+        print('Pilihan menu tidak tersedia!')
         print('Mohon pilih ulang menu yang yang tersedia')
-        print()
-        database_menu_display()
+        main_menu_display()
 
 def show_database():
+    print()
+    print('======================================  Data Karyawan Divisi Data Science  =======================================')
     print()
     for employee_name, employee_data in employee_database.items():
         print('{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}'.format(employee_name, 
@@ -76,16 +48,19 @@ def show_database():
                                                employee_data['Agama'],
                                                employee_data['Status Perkawinan']
                                                ))
-    print()
-    database_menu_display()
+    main_menu_display()
 
 def show_employee():
+    print()
+    print('--------------------------------------  Data Karyawan Divisi Data Science  --------------------------------------')
     print()
     print('Masukkan nama karyawan:', end=' ')
     name_input = input().lower()
     name_input = name_input.title()
     print()
 
+    print('--------------------------------------  Data Karyawan Divisi Data Science  --------------------------------------')
+    print()
     if name_input in employee_database.keys():
         print('{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}'.format(name_input,
                                                       employee_database[name_input]['ID'],
@@ -102,29 +77,138 @@ def show_employee():
         show_employee()
     print()
     
-    print('Apakah anda ingin mengedit data karyawan?')
+    print('Apakah anda ingin mengedit data karyawan ?')
     print('1. Ya')
     print('2. Tidak')
-    print('Input (1/2):', end = ' ')
-    user_input=int(input())
+    print('Input (1 / 2):', end = ' ')
+    user_input=input()
     
     while True:
-        if user_input == 1:
+        if user_input == '1':
             print()
             edit_data(name_input)
-        elif user_input == 2:
+        elif user_input == '2':
             print()
-            print('Kembali ke Menu Database')
-            print()
-            database_menu_display()
+            print('Kembali ke Main Menu')
+            main_menu_display()
         else:
             print()
             print('Perintah tidak ditemukan!')
-            print('Mohon pilih ulang (1-2):', end = ' ')
-            user_input=int(input())
+            print('Mohon pilih ulang (1 / 2):', end = ' ')
+            user_input=input()
+
+def edit_data(keys:str):
+    data_copy = {}
+    data_copy['{}'.format(keys)] = employee_database[keys].copy()
+
+    print('=========================================  Edit Menu Database Karyawan  ==========================================')
+    print()
+    print('Pilih data yang ingin diedit:')
+    print('1. Nama\t\t\t5. Alamat')
+    print('2. ID\t\t\t6. Golongan Darah')
+    print('3. Tempat Lahir\t\t7. Agama')
+    print('4. Tanggal lahir\t8. Status Perkawinan')
+    print('Input (1 - 8):', end = ' ')
+    user_input = input()
+    print()
+
+    edit_validation = True
+    while edit_validation == True:
+        if user_input == '1':
+            edit_validation = False
+            print('Masukkan data nama karyawan baru:', end = ' ')
+            new_name_input = (input().lower()).title()
+            data_temp = employee_database[keys]
+            del employee_database[keys]
+            employee_database[new_name_input] = data_temp
+        elif user_input == '2':
+            edit_validation = False
+            print('Masukkan data ID karyawan baru:', end = ' ')
+            new_id_input = input()
+            employee_database[keys]['ID'] = new_id_input
+        elif user_input == '3':
+            edit_validation = False
+            print('Masukkan data tempat lahir karyawan baru:', end = ' ')
+            new_birthplace_input = (input().lower()).title()
+            employee_database[keys]['Tempat Lahir'] = new_birthplace_input
+        elif user_input == '4':
+            edit_validation = False
+            print('Masukkan data tanggal lahir karyawan baru:', end = ' ')
+            new_birthday_input = (input().lower()).title()
+            employee_database[keys]['Tanggal Lahir'] = new_birthday_input
+        elif user_input == '5':
+            edit_validation = False
+            print('Masukkan data alamat karyawan baru:', end = ' ')
+            new_address_input = (input().lower()).title()
+            employee_database[keys]['Alamat'] = new_address_input
+        elif user_input == '6':
+            edit_validation = False
+            print('Masukkan data golongan darah karyawan baru:', end = ' ')
+            new_bloodtype_input = (input().lower()).title()
+            employee_database[keys]['Golongan Darah'] = new_bloodtype_input
+        elif user_input == '7':
+            edit_validation = False
+            print('Masukkan data agama karyawan baru:', end = ' ')
+            new_religion_input = (input().lower()).title()
+            employee_database[keys]['Agama'] = new_religion_input
+        elif user_input == '8':
+            edit_validation = False
+            print('Masukkan data status perkawinan karyawan baru:', end = ' ')
+            new_marriedstatus_input = (input().lower()).title()
+            employee_database[keys]['Status Perkawinan'] = new_marriedstatus_input
+        else:
+            print('Perintah tidak ditemukan!')
+            print('Mohon pilih ulang (1 - 8):', end = ' ')
+            user_input=input()
+        print()
+
+    if user_input == 1:
+        print('{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}'.format(new_name_input,
+                                                      employee_database[new_name_input]['ID'],
+                                                      employee_database[new_name_input]['Tempat Lahir'],                                                   
+                                                      employee_database[new_name_input]['Tanggal Lahir'],
+                                                      employee_database[new_name_input]['Alamat'],
+                                                      employee_database[new_name_input]['Golongan Darah'],
+                                                      employee_database[new_name_input]['Agama'],
+                                                      employee_database[new_name_input]['Status Perkawinan']
+                                                     ))
+    elif int(user_input) > 1 and int(user_input) < 8:
+        print('{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}'.format(keys,
+                                                      employee_database[keys]['ID'],
+                                                      employee_database[keys]['Tempat Lahir'],                                                   
+                                                      employee_database[keys]['Tanggal Lahir'],
+                                                      employee_database[keys]['Alamat'],
+                                                      employee_database[keys]['Golongan Darah'],
+                                                      employee_database[keys]['Agama'],
+                                                      employee_database[keys]['Status Perkawinan']
+                                                     ))
+    print()
+
+    print('Apakah data edit sudah benar?')
+    print('1. Ya')
+    print('2. Tidak')
+    print('Input (1 / 2):', end = ' ')
+    user_input=input()
+    print()
+
+    while True:
+        if user_input == '1':
+            print('Data edit diterima!')
+            print('Kembali ke Main Menu Database')
+            main_menu_display()
+        elif user_input == '2':
+            employee_database[keys] = data_copy[keys]
+            edit_data(keys)
+        else:
+            print('Perintah tidak ditemukan!')
+            print('Mohon pilih ulang (1 - 2):', end = ' ')
+            user_input=input()
+            print()
 
 def add_employee():
-
+    print()
+    print('=========================================  Add Menu Database Karyawan  ==========================================')
+    print()
     print('Masukkan data nama karyawan baru:', end = ' ')
     new_name_input = (input().lower()).title()
     print('Masukkan data ID karyawan baru:', end = ' ')
@@ -157,11 +241,11 @@ def add_employee():
     print('Apakah data karyawan yang diinput sudah benar?')
     print('1. Ya')
     print('2. Tidak')
-    user_input=int(input(('(1/2): ')))
+    user_input=input('(1/2): ')
 
     # input_database = True
     while True:
-        if user_input == 1:
+        if user_input == '1':
             employee_database.update({new_name_input :{'ID' : new_id_input,
                                                         'Tempat Lahir' : new_birthplace_input,
                                                         'Tanggal Lahir' : new_birthday_input,
@@ -173,113 +257,21 @@ def add_employee():
             # input_database = False
             print('Data karyawan baru telah diterima')
             main_menu_display()
-        elif user_input == 2:
-            print()
+        elif user_input == '2':
             add_employee()
         else:
             print()
             print('Perintah tidak ditemukan!')
-            print('Mohon pilih ulang (1-2):', end = ' ')
+            print('Mohon pilih ulang (1 - 2):', end = ' ')
             user_input=int(input())
             print()
-
-def edit_data(keys:str):
-    
-    print('Pilih data yang ingin diedit:')
-    print('1. Nama\t\t\t5. Alamat')
-    print('2. ID\t\t\t6. Golongan Darah')
-    print('3. Tempat Lahir\t\t7. Agama')
-    print('4. Tanggal lahir\t8. Status Perkawinan')
-    print('(1-8):', end = ' ')
-    user_input = int(input())
-    print()
-
-    if user_input == 1:
-        print('Masukkan data nama karyawan baru:', end = ' ')
-        new_name_input = (input().lower()).title()
-        db_temp = employee_database[keys]
-        del employee_database[keys]
-        employee_database[new_name_input] = db_temp
-    elif user_input == 2:
-        print('Masukkan data ID karyawan baru:', end = ' ')
-        new_id_input = input()
-        employee_database[keys]['ID'] = new_id_input
-    elif user_input == 3:
-        print('Masukkan data tempat lahir karyawan baru:', end = ' ')
-        new_birthplace_input = (input().lower()).title()
-        employee_database[keys]['Tempat Lahir'] = new_birthplace_input
-    elif user_input == 4:
-        print('Masukkan data tanggal lahir karyawan baru:', end = ' ')
-        new_birthday_input = (input().lower()).title()
-        employee_database[keys]['Tanggal Lahir'] = new_birthday_input
-    elif user_input == 5:
-        print('Masukkan data alamat karyawan baru:', end = ' ')
-        new_address_input = (input().lower()).title()
-        employee_database[keys]['Alamat'] = new_address_input
-    elif user_input == 6:
-        print('Masukkan data golongan darah karyawan baru:', end = ' ')
-        new_bloodtype_input = (input().lower()).title()
-        employee_database[keys]['Golongan Darah'] = new_bloodtype_input
-    elif user_input == 7:
-        print('Masukkan data agama karyawan baru:', end = ' ')
-        new_religion_input = (input().lower()).title()
-        employee_database[keys]['Agama'] = new_religion_input
-    elif user_input == 8:
-        print('Masukkan data status perkawinan karyawan baru:', end = ' ')
-        new_marriedstatus_input = (input().lower()).title()
-        employee_database[keys]['Status Perkawinan'] = new_marriedstatus_input
-    else:
-        pass
-    print()
-
-    if user_input == 1:
-        print('{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}'.format(new_name_input,
-                                                      employee_database[new_name_input]['ID'],
-                                                      employee_database[new_name_input]['Tempat Lahir'],                                                   
-                                                      employee_database[new_name_input]['Tanggal Lahir'],
-                                                      employee_database[new_name_input]['Alamat'],
-                                                      employee_database[new_name_input]['Golongan Darah'],
-                                                      employee_database[new_name_input]['Agama'],
-                                                      employee_database[new_name_input]['Status Perkawinan']
-                                                     ))
-    elif user_input > 1 and user_input < 8:
-        print('{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}'.format(keys,
-                                                      employee_database[keys]['ID'],
-                                                      employee_database[keys]['Tempat Lahir'],                                                   
-                                                      employee_database[keys]['Tanggal Lahir'],
-                                                      employee_database[keys]['Alamat'],
-                                                      employee_database[keys]['Golongan Darah'],
-                                                      employee_database[keys]['Agama'],
-                                                      employee_database[keys]['Status Perkawinan']
-                                                     ))
-    print()
-
-    print('Apakah data edit sudah benar?')
-    print('1. Ya')
-    print('2. Tidak')
-    print('Input (1/2):', end = ' ')
-    user_input=(input())
-    print()
-
-    while True:
-        if int(user_input) == 1:
-            print('Data edit diterima!')
-            print('Kembali ke Menu Database')
-            print()
-            database_menu_display()
-        elif int(user_input) == 2:
-            edit_data(keys)
-        else:
-            print('Perintah tidak ditemukan!')
-            print('Mohon pilih ulang (1-2):', end = ' ')
-            user_input=input()
 
 def delete_menu():
     print()
     print('Apakah anda ingin menghapus data?')
     print('1. Ya')
     print('2. Tidak')
-    print('Input (1/2):', end = ' ')
+    print('Input (1 / 2):', end = ' ')
     user_input = int(input())
     print()
 
@@ -288,12 +280,14 @@ def delete_menu():
         print('Kembali ke menu awal')
         main_menu_display()
 
-    print('=============  Delete Menu  =============')
+    print('=================================================  Delete Menu  ==================================================')
+    print()
     print('1. Hapus data karyawan')
     print('2. Hapus database')
     print('3. Kembali ke menu awal')
+    print()
     print('Silahkan pilih perintah hapus')
-    print('Input (1-3):', end = ' ')
+    print('Input (1 - 3):', end = ' ')
     user_input = int(input())
 
     if  user_input == 1:
@@ -304,6 +298,7 @@ def delete_menu():
         print('Kembali ke menu awal')
         main_menu_display()
     else:
+        print()
         print('Perintah tidak ditemukan!')
         print('Perintah delete dibatalkan')
         print('Kembali ke menu awal')
@@ -328,7 +323,7 @@ def delete_data():
             print('Apakah anda ingin menghapus data karyawan " {} "'.format(name_input))
             print('1. Ya')
             print('2. Tidak')
-            print('Input (1/2):', end = ' ')
+            print('Input (1 / 2):', end = ' ')
             user_input = int(input())
             if user_input == 1:
                 del employee_database[name_input]
@@ -355,7 +350,7 @@ def clear_data():
     print('Apakah anda ingin menghapus seluruh data karyawan?')
     print('1. Ya')
     print('2. Tidak')
-    print('Input (1/2):', end = ' ')
+    print('Input (1 / 2):', end = ' ')
     user_input = int(input())
     print()
 
@@ -363,7 +358,7 @@ def clear_data():
         print('Apakah anda yakin?')
         print('1. Ya')
         print('2. Tidak')
-        print('Input (1/2):', end = ' ')
+        print('Input (1 / 2):', end = ' ')
         user_input = int(input())
         print()
         
