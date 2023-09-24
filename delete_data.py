@@ -3,7 +3,7 @@ def delete_menu():
     print('Apakah anda ingin menghapus data?')
     print('1. Ya')
     print('2. Tidak')
-    print('Input (1/2):', end = ' ')
+    print('Input (1 / 2):', end = ' ')
     user_input = int(input())
     print()
 
@@ -12,12 +12,14 @@ def delete_menu():
         print('Kembali ke menu awal')
         # main_menu_display()
 
-    print('=============  Delete Menu  =============')
+    print('=================================================  Delete Menu  ==================================================')
+    print()
     print('1. Hapus data karyawan')
     print('2. Hapus database')
     print('3. Kembali ke menu awal')
+    print()
     print('Silahkan pilih perintah hapus')
-    print('Input (1-3):', end = ' ')
+    print('Input (1 - 3):', end = ' ')
     user_input = int(input())
 
     if  user_input == 1:
@@ -28,6 +30,7 @@ def delete_menu():
         print('Kembali ke menu awal')
         # main_menu_display()
     else:
+        print()
         print('Perintah tidak ditemukan!')
         print('Perintah delete dibatalkan')
         print('Kembali ke menu awal')
@@ -52,9 +55,8 @@ def delete_data():
             print('Apakah anda ingin menghapus data karyawan " {} "'.format(name_input))
             print('1. Ya')
             print('2. Tidak')
-            print('Input (1/2):', end = ' ')
+            print('Input (1 / 2):', end = ' ')
             user_input = int(input())
-
             if user_input == 1:
                 del employee_database[name_input]
                 print('Data karyawan telah dihapus')
@@ -69,7 +71,6 @@ def delete_data():
                 print('Perintah tidak ditemukan!')
                 print('Mohon pilih ulang (1/2):', end = ' ')
                 user_input=input()
-
         else:
             print('Data karyawan tidak ditemukan!')
             print('Perintah delete dibatalkan')
@@ -81,7 +82,7 @@ def clear_data():
     print('Apakah anda ingin menghapus seluruh data karyawan?')
     print('1. Ya')
     print('2. Tidak')
-    print('Input (1/2):', end = ' ')
+    print('Input (1 / 2):', end = ' ')
     user_input = int(input())
     print()
 
@@ -89,7 +90,7 @@ def clear_data():
         print('Apakah anda yakin?')
         print('1. Ya')
         print('2. Tidak')
-        print('Input (1/2):', end = ' ')
+        print('Input (1 / 2):', end = ' ')
         user_input = int(input())
         print()
         
@@ -106,7 +107,7 @@ def clear_data():
             print('Perintah hapus dibatalkan')
             print('Kembali ke menu awal')
             # main_menu_display()
-    
+
 employee_database={
     'Viky':{
         'ID' : 'DS150798',
@@ -127,24 +128,3 @@ employee_database={
         'Status Perkawinan' : 'Belum Kawin'
         }
 }
-
-for employee_name, employee_data in employee_database.items():
-        print('{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}'.format(employee_name, 
-                                               employee_data['ID'],
-                                               employee_data['Tempat Lahir'],                                                   employee_data['Tanggal Lahir'],
-                                               employee_data['Alamat'],
-                                               employee_data['Golongan Darah'],
-                                               employee_data['Agama'],
-                                               employee_data['Status Perkawinan']
-                                               ))
-delete_menu()
-
-for employee_name, employee_data in employee_database.items():
-        print('{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}'.format(employee_name, 
-                                               employee_data['ID'],
-                                               employee_data['Tempat Lahir'],                                                   employee_data['Tanggal Lahir'],
-                                               employee_data['Alamat'],
-                                               employee_data['Golongan Darah'],
-                                               employee_data['Agama'],
-                                               employee_data['Status Perkawinan']
-                                               ))
