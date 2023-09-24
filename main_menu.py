@@ -1,4 +1,8 @@
 def main_menu_display():
+    '''
+    For displaying main menu of the program so the user can choose which 
+    task that user need to do
+    '''
     print()
     print('=========================================  Main Menu Database Karyawan  ==========================================')
     print()
@@ -14,7 +18,7 @@ def main_menu_display():
 
 def main_menu(i:str):
     '''
-    Memilih menu yang diinginkan
+    for choosing which menu that user want
     '''
     if i == '1':
         pass
@@ -38,5 +42,3 @@ def main_menu(i:str):
         print('Pilihan menu tidak tersedia!')
         print('Mohon pilih ulang menu yang yang tersedia')
         main_menu_display()
-
-main_menu_display()
