@@ -39,6 +39,10 @@ def show_database():
     print()
     print('======================================  Data Karyawan Divisi Data Science  =======================================')
     print()
+    
+    global employee_database
+    employee_database = dict(sorted(employee_database.items()))
+    
     for employee_name, employee_data in employee_database.items():
         print('{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}'.format(employee_name, 
                                                employee_data['ID'],
