@@ -112,11 +112,12 @@ def edit_data(keys:str):
     print('=========================================  Edit Menu Database Karyawan  ==========================================')
     print()
     print('Pilih data yang ingin diedit:')
-    print('1. Nama\t\t\t5. Alamat')
-    print('2. ID\t\t\t6. Golongan Darah')
-    print('3. Tempat Lahir\t\t7. Agama')
-    print('4. Tanggal lahir\t8. Status Perkawinan')
-    print('Input (1 - 8):', end = ' ')
+    print('1. Nama\t\t\t6. Golongan Darah')
+    print('2. ID\t\t\t7. Agama')
+    print('3. Tempat Lahir\t\t8. Status Perkawinan')
+    print('4. Tanggal lahir\t9. Kembali ke Main Menu')
+    print('5. Alamat')
+    print('Input (1 - 9):', end = ' ')
     user_input = input()
     print()
 
@@ -164,9 +165,14 @@ def edit_data(keys:str):
             print('Masukkan data status perkawinan karyawan baru:', end = ' ')
             new_marriedstatus_input = (input().lower()).title()
             employee_database[keys]['Status Perkawinan'] = new_marriedstatus_input
+        elif user_input == '9':
+            edit_validation = False
+            print()
+            print('Kembali ke Main Menu')
+            main_menu_display()
         else:
             print('Perintah tidak ditemukan!')
-            print('Mohon pilih ulang (1 - 8):', end = ' ')
+            print('Mohon pilih ulang (1 - 9):', end = ' ')
             user_input=input()
         print()
 
